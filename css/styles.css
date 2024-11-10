@@ -1,0 +1,315 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #444;
+  }
+  
+  .navbar {
+      height: 85px;
+      background-color: hsl(0, 0%, 10%);
+      display: flex;
+      justify-content: center; /* Centra el contenido del navbar */
+      align-items: center;
+      padding: 0; /* Elimina el padding que podría estar causando el desbordamiento */
+      width: 100%;
+      box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+    }
+    .navbar .logo a {
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      margin-left: 12px;
+    }
+    
+  
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  .menu-links {
+    display: flex;
+    gap: 24px;
+    border-right: 1px solid #999999;
+    padding-inline: 24px;
+  }
+  
+  .menu-links a {
+    font-weight: 500;
+    color: #999999;
+    padding: 8px 16px;
+  }
+  
+  .menu-links a:hover {
+    color: white;
+  }  
+  
+  
+  
+  .menu-btn {
+    font-size: 32px;
+    color: white;
+    display: none;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 53rem) {
+    .menu {
+      display: none;
+    }
+  
+    .menu-btn {
+      display: block;
+    }
+  }
+  
+  #logo {
+    height: auto;
+    width: 50%;
+    margin-left: 125%;
+  }
+  
+  .texto2 {
+    color: white;
+  }
+  
+  .texto {
+    color: #282424;
+    font-family: 'REFORMA 2018', sans-serif;
+  }
+  
+
+  #logo2 {
+    height: 110px;
+  }
+  
+  footer {
+    margin-top: auto;
+    background-color: #252525;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr;
+    justify-content: start; 
+    align-items: center;
+  }
+  
+  footer p {
+    margin: 0;
+    text-align: left; 
+  }
+  
+  button {
+    background-color: #68656599;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #83828299
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .antoniavinos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    text-align: center;
+  }
+  
+  nav.primary-navigation ul {
+    list-style: none;
+    margin: 0 auto;
+    border-left: 2px solid #666;
+    display: inline-block;
+    padding: 0 30px;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'REFORMA 2018', sans-serif; 
+  }
+  
+  nav.primary-navigation ul li a {
+    color: black;
+    font-family: 'REFORMA 2018', sans-serif;
+  }
+  
+  nav.primary-navigation ul li a:hover {
+    color: #666;
+  }
+  
+  nav.primary-navigation ul li:hover {
+    cursor: pointer;
+  }
+  
+  nav.primary-navigation ul li ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    padding-left: 0;
+    left: 0;
+    display: none;
+    background: white;
+  }
+  
+  nav.primary-navigation ul li:hover > ul,
+  nav.primary-navigation ul li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    min-width: 250px;
+    text-align: left;
+    padding-top: 20px;
+    box-shadow: 0px 3px 5px -1px #ccc;
+  }
+  
+  nav.primary-navigation ul li ul li {
+    clear: both;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+    border-style: none;
+    font-family: 'REFORMA 2018', sans-serif; 
+  }
+  
+  nav.primary-navigation ul li ul li a:hover {
+    padding-left: 10px;
+    border-left: 2px solid #ccc;
+    transition: all 0.3s ease;
+  }
+  
+  a:hover {
+    color: #ccc;
+  }
+  
+  ul li ul li a {
+    transition: all 0.5s ease;
+  }
+  .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+  }
+  
+  .whatsapp-float a {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+  }
+  
+  .whatsapp-float i {
+    font-size: 24px;
+  }
+  
+  .whatsapp-float:hover {
+    background-color: #1ebe5b;
+  }
+  
+  
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+.form-container {
+    width: 60%;
+    padding-right: 20px;
+}
+.tour-info {
+    width: 35%;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input, select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #444;
+}
+.reservas-lista {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+td button {
+    background-color: #cccc;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+td button:hover {
+    background-color: #cccc;
+}
