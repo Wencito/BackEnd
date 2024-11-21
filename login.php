@@ -1,34 +1,51 @@
 <?php
+session_start();
+
+// Configuración de conexión
 $servidor = "localhost";
 $usuarioBD = "root";
 $clave = "";
 $baseDeDatos = "registrar";
 
-$enlace = mysqli_connect($servidor, $usuarioBD, $clave, $baseDeDatos);
+// Conexión a la base de datos
+$enlace = new mysqli($servidor, $usuarioBD, $clave, $baseDeDatos);
 
-if (!$enlace) {
-    die("Conexión fallida: " . mysqli_connect_error());
+// Verificar conexión
+if ($enlace->connect_error) {
+    http_response_code(500); // Error interno del servidor
+    echo "Error de conexión con la base de datos.";
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
+    $usuario = trim($_POST['usuario'] ?? '');
+    $contrasena = trim($_POST['contrasena'] ?? '');
 
-    // Escapar caracteres especiales para evitar inyección de SQL
-    $usuario = mysqli_real_escape_string($enlace, $usuario);
-    $contrasena = mysqli_real_escape_string($enlace, $contrasena);
+    if (!empty($usuario) && !empty($contrasena)) {
+        // Consulta preparada para evitar inyección SQL
+        $consulta = $enlace->prepare("SELECT * FROM datos WHERE usuario = ? AND contrasena = ?");
+        $consulta->bind_param("ss", $usuario, $contrasena);
+        $consulta->execute();
+        $resultado = $consulta->get_result();
 
-    // Consulta para obtener el usuario y la contraseña
-    $consulta = "SELECT * FROM datos WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
-    $resultado = mysqli_query($enlace, $consulta);
+        if ($resultado->num_rows == 1) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['usuario'] = $usuario;
 
-    if (mysqli_num_rows($resultado) == 1) {
-        echo "Login exitoso";
+            // Responder con un mensaje exitoso
+            echo "Login exitoso";
+        } else {
+            http_response_code(401); // No autorizado
+            echo "Usuario o contraseña incorrectos.";
+        }
+        $consulta->close();
     } else {
-        echo "Usuario o contraseña incorrectos.";
+        http_response_code(400); // Solicitud incorrecta
+        echo "Por favor completa todos los campos.";
     }
+} else {
+    http_response_code(405); // Método no permitido
+    echo "Método no permitido.";
 }
 
-mysqli_close($enlace);
-?>
-
+$enlace->close();

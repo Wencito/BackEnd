@@ -61,323 +61,153 @@ $resultadoUsuarios = mysqli_query($enlace, $consultaUsuarios);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antonia Vinos - Usuarios Registrados</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
 
     <style>
+        /* General Styles */
         body {
-    display: flex;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    height: 100vh;
-}
-
-.sidebar {
-    width: 250px;
-    height: 127vh; 
-    background-color: #cccc;
-    color: rgb(0, 0, 0);
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-
-.sidebar h2 {
-    text-align: center;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin: 20px 0;
-}
-
-.sidebar ul li a {
-    color: black;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.sidebar ul li a:hover {
-    background-color: #444;
-    color: white;
-}
-
-.main-content {
-    flex: 1;
-    padding: 20px;
-}
-
-.content {
-    display: none;
-}
-
-.content.active {
-    display: block;
-}
-
-.login_logo {
-    text-align: center;
-    margin: 0 auto; 
-    padding: 20px 0;
-}
-
-.login_logo img {
-    max-width: 250px;
-    height: auto; 
-}
-
-.m-aside-menu .m-menu__nav>.m-menu__item {
-    position: relative;
-    margin: 0;
-}
-.m-aside-menu .m-menu__nav .m-menu__item {
-    display: block;
-    float: none;
-    height: auto;
-    padding: 0;
-}
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-    unicode-bidi: isolate;
-}
-
-.m-aside-menu .m-menu__nav {
-    list-style: none;
-    padding: 30px 0 30px 0;
-}
-
-
-ul {
-    list-style-type: disc;
-}
-
-.actions-menu {
-    margin-top: 20px;
-    flex: 1; 
-    padding: 20px;  
-    background-color: #bbb; 
-    color: #333;
-    min-height: 80vh; 
-    border-radius: 20px;
-}
-
-.actions-menu h1 {
-    font-size: 40px; 
-    margin-bottom: 20px; 
-    text-align: center;
-    color: #333; 
-}
-
-.search-container {
-    display: flex; 
-    align-items: center;
-    margin: 20px 0; 
-}
-
-.search-container .form-control {
-    border-radius: 5px;
-    border: 1px solid #000000;
-    flex: 1;
-    padding: 10px; 
-}
-
-.search-container .btn {
-    border-radius: 5px;
-    margin-left: 0;
-    color: black;
-}
-
-
-@media (min-width: 768px) {
-    @supports ((position:-webkit-sticky) or (position:sticky)) {
-        .bd-navbar1 {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            z-index: 1071;
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
         }
-    }
-}
+        * {
+            box-sizing: border-box;
+        }
+        
 
-.navbar1-expand {
-    -ms-flex-flow: row nowrap;
-    flex-flow: row nowrap;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-}
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background-color: #495057;
+        }
+        .btn-logout {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-logout:hover {
+            background-color: #c82333;
+        }
 
-.navbar1 {
-    position: sticky; 
-    top: 0; 
-    max-width: 80%;
-    background-color: #BBE1FA;
-    z-index: 1000; 
-    height: 150px;
-    margin-bottom: 200px;
-}
+        /* Main Content */
+        .content1 {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .actions-menu {
+            padding: 20px;
+            background-color: #bbb;
+            color: #333;
+            border-radius: 20px;
+        }
+        .actions-menu h3 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-.container {
-    margin-top: 20px;
-}
+        /* Table Styles */
+        .table {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .thead-dark th {
+            background-color: #0F4C75;
+            color: white;
+        }
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
 
-.table {
-    margin-top: 100px; 
-    border-radius: 5px; 
-    overflow: hidden;
-}
+        /* Footer */
+        .Footer1 {
+            background-color: #354046;
+            height: 82px;
+            width: 100%;
+            margin-top: 50px;
+        }
+        .LetrasFoot {
+            color: white;
+            justify-content: center;
+            margin: 20px;
+        }
 
-.thead-dark th {
-    background-color: #0F4C75; 
-    color: white;
-}
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #17a2b8;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        .btn-logout {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-logout:hover {
+            background-color: #c82333;
+        }
 
-tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-.content1{
-    width: 1000px;
-    height: 500px;
-    margin-bottom: 150px;
-    margin-left: 90px;
-    margin-right: 60px;
-    padding: 20px;
-    flex-grow: 1; 
-    margin-top: 30px;
-}
-
-
-.EspacioOscuro {
-    background-color: #1B262C;
-    flex-grow: 1; 
-    margin: 0; 
-    height:100px;
-    width: 1300px;
-}
-
-.Footer1 {
-    background-color: #354046;
-    flex-grow: 1; 
-    margin: 0; 
-    height: 82px;
-    width: 100%;
-    margin-top: 50px;
-}
-
-.modal-header {
-    background-color: #aaa; 
-    color: white;
-}
-
-.modal-title {
-    font-size: 1.5rem;
-}
-
-.modal-body {
-    padding: 20px;
-}
-
-.form-group label {
-    font-weight: bold;
-}
-
-.form-control {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.btn-primary {
-    background-color: #007bff; 
-    border-color: #007bff; 
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-
-.Obstaculo{
-    width: 150px;
-    height: 70px;
-}
-
-.upload-container {
-    display: inline-block; 
-    margin: 0; 
-    padding: 0;
-    margin-left: 10px;
-}
-
-.upload-container label {
-    display: inline-block; 
-    margin: 0;
-}
-
-
-.botonExcel {
-    background-color: #4CAF50 !important; 
-    color: rgb(230, 221, 221) !important; 
-    border: none; 
-    transition: background-color 0.3s; 
-    padding: 5px 10px; 
-    margin: 0;
-}
-
-.botonExcel:hover {
-    background-color: #6dce72 !important;
-    color: white !important;
-}
-
-.botonAgregar {
-    background-color: #0c3e7d !important; 
-    color: rgb(230, 221, 221) !important; 
-    border: none; 
-    transition: background-color 0.3s; 
-    margin: 0;
-}
-
-.botonAgregar:hover {
-    background-color: #3b8be0 !important;
-    color: white !important;
-}
-
-.Footer1 {
-    background-color: #354046;
-    flex-grow: 1; 
-    margin: 0; 
-    height: 82px;
-    width: 100%;
-    margin-top: 50px;
-}
-
-.LetrasFoot{
-    color: white;
-    justify-content: center;
-    margin-left: 20px;
-    margin-top: 30px;
-}
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Menú</h2>
-        <ul>
-        <li><a href="http://localhost/ejemplo/registro.php">Usuarios</a></li>
-            <li><a href="http://localhost/ejemplo/guardar_reserva.php">Reservas</a></li>
-            <li><a href="#">Estadísticas</a></li>
-        </ul>
+    <div>
+            <h2>Menú</h2>
+            <ul>
+                <li><a href="registro.php" class="active">Usuarios</a></li>
+                <li><a href="reserva.php">Reservas</a></li>
+                <li><a href="estadisticas.php">Estadísticas</a></li>
+            </ul>
+        </div>
+        <button class="btn-logout" onclick="window.location.href='logout.php'">Cerrar Sesión</button>
     </div>
-
+    <div id="notification" class="notification">
+        Hola, <?php echo htmlspecialchars($_SESSION['usuario']); ?>!
+    </div>
     <div class="content2">
         <div class="content1">
             <div class="actions-menu shadow">
@@ -408,7 +238,6 @@ tbody tr:hover {
                                     echo "<td>" . $usuario['contrasena'] . "</td>";
                                     echo "<td>
                                             <button class='btn btn-danger btn-sm' onclick='eliminarUsuario(" . $usuario['id'] . ")'>Eliminar</button>
-                                            <button class='btn btn-primary btn-sm' onclick='confirmarUsuario(" . $usuario['id'] . ")'>Confirmar</button>
                                           </td>";
                                     echo "</tr>";
                                 }
@@ -425,28 +254,26 @@ tbody tr:hover {
 
     <script>
         function eliminarUsuario(id) {
-            if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
-                const formData = new FormData();
-                formData.append('action', 'delete');
-                formData.append('id', id);
+    console.log("ID a eliminar:", id);
+    if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+        const formData = new FormData();
+        formData.append('action', 'delete');
+        formData.append('id', id);
 
-                fetch('eliminar_usuario.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                    location.reload();
-                })
-                .catch(error => console.error('Error:', error));
-            }
-        }
+        fetch('eliminar_usuario.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log("Respuesta del servidor:", data); // Depuración
+            alert(data);
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
 
-        function confirmarUsuario(id) {
-            alert("Usuario confirmado: " + id);
-            // Implementa la acción de confirmación aquí si es necesario
-        }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
